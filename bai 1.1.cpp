@@ -71,22 +71,22 @@ void indb()
 }
 int tim(char sdt[11])
 {
-	danhba tam;
 for(int i=0;i<db.size();i++)
 {
 	if(strcmp(db[i].sdt,sdt)==0)
 	return i;
-	else return -1;	
-	
+	 return -1;	
+	 	
 }
 }
 void sua (char sdt[11])
 {
 	int vt=tim(sdt);
+	
+	db.erase(db.begin()+vt);
 	danhba c;
-	if(vt>=0)
-	{
-		
+if(vt>=0){
+
 		cout<<"nhap lai danh ba"<<endl<<"ten nguoi dung";
 		cin.sync();
 		cin>>c.ten;
@@ -101,31 +101,32 @@ void sua (char sdt[11])
 		cin>>c.gioitinh;
 		cout<<"nhap dia chi";cin.sync();
 		cin>>c.diachi;
-		
-	}
-	db.insert(db.begin()+vt,c);
-	db.erase(db.begin()+vt+1);
-	ghifile();
-	
-	
+		db.insert(db.begin()+vt ,c);
+}
+else
+cout<<"khong thay sdt can tim";
+			
 }
 void xoa(char sdt[11])
 {
-	int vt=tim(sdt);
-	danhba c;
-	if(vt>=0)
-	{
-		
-	db.erase(db.begin()+vt);
-		ghifile();
-	}
-	
-	
-	
+//	int vt=tim(sdt);
+//	if(vt>=0)
+//	{
+//	db.erase(db.begin()+vt);
+//	}
+//	else
+//	cout<<"khong thay sdt can tim";
+for(int i=0;i<db.size();i++)
+{
+	if(strcmp(db[i].sdt,sdt)==0)
+		{
+		db.erase(db.begin()+i);	
+			
+		}
+}
 }
 int timtheoten(char ten[50])
 {
-		danhba tam;
 for(int i=0;i<db.size();i++)
 {
 	if(strcmp(db[i].ten,ten)==0)
@@ -145,18 +146,17 @@ int main()
 	strcpy(c.sdt,"016274605");
 	themmoi(c);	
 	danhba c1;
-	strcpy(c1.ten, "nguyen huu quang");
+	strcpy(c1.ten, "nguyen huu quang01");
 	strcpy(	c1.diachi,"binhthuan");
 	strcpy(	c1.email,"dbbb");
 	strcpy(c1.gioitinh,"nam");
-	strcpy(c1.sdt,"016274605");
-	themmoi(c);
-	indanhba(c);
-	indb();
-	docfile();
+	strcpy(c1.sdt,"1");
+	themmoi(c1);	
+	ghifile();
 	sua("016274605");
-	xoa("016274605");
-	cout<<"vi tri cua ten nguyen huu quang"<<timtheoten("nguyen huu quang")	;
+	xoa("1");
+	indb();
+	cout<<timtheoten("khong");
 }
 
 
