@@ -93,7 +93,7 @@ int main()
 	for(int i=0;i<nt.size();i++)
 	{
 		cout<<nt[i].ten <<"        ";
-		cout<<nt[i].diem;
+		cout<<nt[i].diem<<endl;
 		
 	}
 	
