@@ -28,10 +28,16 @@ int timstt(ngaythang n)
 {
 	int stt=0;
 	for(int i = 0; i < n.thang;i++)
+	{
+	
 		stt+=thang[i];
+}
 		stt+=n.ngay;
 	if(namnhuan(n.nam) == 1)
-		stt + 1;
+			if((n.ngay>28&&n.thang==2 )||(n.thang>=3))
+			{
+				stt++;
+			}
 	 return stt;
 }
 
