@@ -81,7 +81,7 @@ for(int i=0;i<db.size();i++)
 }
 void sua (char sdt[11])
 {
-	int vt=tim(sdt);
+	int vt=tim(sdt)+1;
 	
 	db.erase(db.begin()+vt);
 	danhba c;

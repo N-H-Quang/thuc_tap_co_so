@@ -24,66 +24,22 @@ int namnhuan(int nam)
 	return 0;
 		
 }
-int timstt(ngaythang n)
+/*int timstt(ngaythang n)
 {
-	int stt=0;
-	if(namnhuan(n.nam) == 1)
+	int stt=n.ngay;
+		if(namnhuan(n.nam) == 1)
 	{
-		for(int i = 0; i < n.thang;i++)
-		{
-			if(i == 2)
-				thang[i] += 1;	
-			stt+=thang[i];
-			stt+=n.ngay;
-			return stt;
-		}
+	   	thang[2] += 1;
 	}
-	else
-		{
-		for(int i = 0; i < n.thang;i++)
+		for(int i = 0; i <n.thang;i++)
 		{	
 			stt+=thang[i];
-			stt+=n.ngay;
-			return stt;
+			
 		}
-	}
+	return stt;
 
 }
-void NgayTruSTT(int stt, int nam)
-{
-	int k = 0;
-	if(namnhuan(nam) == 1)
-	{
-			for(int i = 0; i < 13; i++)
-			{
-				if(i = 2)
-					thang[i] += 1;
-				k += thang[i];
-				if(stt <= k)
-				{
-					cout<<"ngay :"<<stt-(k-thang[i])<<endl;
-					cout<<"thang :"<<i<<endl;
-					cout<<"nam :"<<nam<<endl;
-					break;
-				}
-			}
-		}
-	else
-	{
-			for(int i = 0; i < 13; i++)
-				{
-					 k += thang[i];
-					 cout<<"thang "<<i;
-					 if(stt <= k)
-						{
-							cout<<"ngay :"<<stt-(k-thang[i])<<endl;
-							cout<<"thang :"<<i<<endl;
-							cout<<"nam :"<<nam<<endl;
-							break;
-						}
-				}	
-	}		
-}
+*/
 void NgaySTT(int stt, int nam)
 {
 	int k=0;
@@ -115,7 +71,6 @@ void NgaySTT(int stt, int nam)
 							{				
 								cout<<"ngay :"<<stt-(k-thang[i])<<endl;
 								h = 1;
-								cout<<"hello";
 								cout<<"thang :"<<i<<endl;
 								cout<<"nam :"<<nam<<endl;
 								break;
@@ -133,39 +88,47 @@ void CongNgayThang(ngaythang n, int x)
 	int kq = x + timstt(n);
 	int nam = n.nam;
 	if(kq <= 365)
-		 NgaySTT(kq, nam);///kiem tra nam nay la nhuan hay ko nhuan
+		 NgaySTT(kq, nam);
 	else
 	{
 		if(namnhuan(nam) == 1)
+		{
 			if(kq == 366)
 				 {	
 				 	cout<<"ngay 31 "<<"thang 12 "<<"nam "<<nam;
 				 }
 			if(kq > 366)
-				 NgayTruSTT(kq - 366, nam + 1);//nam sau
+				 NgaySTT(kq - 366, nam + 1);//nam sau
+		}
 		else
-			 NgayTruSTT(kq- 365, nam + 1);//nam sau
+			 NgaySTT(kq- 365, nam + 1);//nam sau
 	}
 }
-//void TruNgayThang(ngaythang n, int x)
-//{
-//	int kq = timstt(n) - x;
-//	int nam = n.nam;
-//	if(kq >= 1)
-//		 NgaySTT(kq, nam);///kiem tra nam nay la nhuan hay ko nhuan
-//	else
-//	{
-//		if(namnhuan(nam) == 1)
-//			if(kq == 366)
-//				 {	
-//				 	cout<<"ngay 31 "<<"thang 12 "<<"nam "<<nam;
-//				 }
-//			if(kq > 366)
-//				 NgayTruSTT(kq - 366, nam + 1);//nam sau
-//		else
-//			 NgayTruSTT(kq- 365, nam + 1);//nam sau
-//	}
-//}
+void TruNgayThang(ngaythang n, int x)
+{
+	int kq = timstt(n) - x;
+	int nam = n.nam;
+	if(kq >= 1)
+		 NgaySTT(kq, nam);///kiem tra nam nay la nhuan hay ko nhuan
+	else
+	{
+		if(namnhuan(nam-1)==1)
+		NgaySTT(366+kq, nam-1);
+		else
+		NgaySTT(365+kq, nam-1);
+		
+		/*
+		if(namnhuan(nam) == 1)
+			if(kq == 366)
+				 {	
+				 	cout<<"ngay 31 "<<"thang 12 "<<"nam "<<nam-1;
+			if(kq > 366)
+				 NgaySTT(kq - 366, nam-1);
+				 }
+		else
+			 NgaySTT(kq- 365, nam - 1); */
+	}
+}
 int main()
 {	int n;
 	char t[4];
@@ -195,4 +158,8 @@ int main()
 	cin>>n;
 	cout<<endl;
 	CongNgayThang(x,n);
+	cout<<"nhap so ngay muon cong x <= 365 :";
+	cin>>n;
+	cout<<endl;
+	TruNgayThang(x,n);
 }
