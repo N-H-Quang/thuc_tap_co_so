@@ -6,14 +6,14 @@
 #include <stdio.h>
 #include<stdlib.h>
 using namespace std;
-typedef struct 
+typedef struct danhba
 {
 	char ten[50];
 	char gioitinh[5];
 	char sdt[11];
 	char email[30];
 	char diachi[50];
-}danhba;
+};
 vector<danhba>db;
 void docfile()
 {
@@ -71,22 +71,23 @@ void indb()
 }
 int tim(char sdt[11])
 {
-for(int i=0;i<db.size();i++)
+for(int i=0;i<=db.size();i++)
 {
 	if(strcmp(db[i].sdt,sdt)==0)
+	{
 	return i;
-	 return -1;	
+	}
+	 
 	 	
 }
+return -1;	
 }
 void sua (char sdt[11])
 {
-	int vt=tim(sdt)+1;
-	
-	db.erase(db.begin()+vt);
+	int vt=tim(sdt);
 	danhba c;
 if(vt>=0){
-
+db.erase(db.begin()+vt);
 		cout<<"nhap lai danh ba"<<endl<<"ten nguoi dung";
 		cin.sync();
 		cin>>c.ten;
@@ -135,6 +136,31 @@ for(int i=0;i<db.size();i++)
 	
 }
 }
+void nhapdanhba()
+{
+	danhba c;
+	char tt='y';
+	while(tt=='y')
+	{
+		cout<<"nhap lai danh ba"<<endl<<"ten nguoi dung";
+		cin.sync();
+		cin.getline(c.ten,50);
+		cout<<"nhap sdt";
+		cin.sync();
+		cin.getline(c.sdt,11);
+		cout<<"nhap email";
+		cin.sync();
+		cin>>c.email;
+		cout<<"nhap gioi tinh";
+		cin.sync();
+		cin>>c.gioitinh;
+		cout<<"nhap dia chi";cin.sync();
+		cin>>c.diachi;
+		cout<<"ban muon nhap nua khong";
+		cin>>tt;
+		db.push_back(c);
+	}
+}
 int main()
 {
 	fflush(stdin);
@@ -151,12 +177,26 @@ int main()
 	strcpy(	c1.email,"dbbb");
 	strcpy(c1.gioitinh,"nam");
 	strcpy(c1.sdt,"1");
-	themmoi(c1);	
+	themmoi(c1);
+	nhapdanhba();	
 	ghifile();
-	sua("016274605");
-	xoa("1");
 	indb();
-	cout<<timtheoten("khong");
+	char tam[11];
+	cout<<"nhap sdt muon sua";
+	cin>>tam;
+	sua(tam);
+	indb();
+	cin.sync();
+	cout<<endl;
+	cout<<"nhap so dien thoai ban muon xoa";
+	cin>>tam;
+	xoa(tam);
+	indb();
+	cout<<endl;
+	cin.sync();
+	cout<<"nhap ten ban muon tim";
+	cin.getline(tam,11);
+	cout<<timtheoten(tam);
 }
 
 

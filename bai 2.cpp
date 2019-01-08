@@ -24,7 +24,7 @@ int namnhuan(int nam)
 	return 0;
 		
 }
-/*int timstt(ngaythang n)
+int timstt(ngaythang n)
 {
 	int stt=n.ngay;
 		if(namnhuan(n.nam) == 1)
@@ -39,7 +39,7 @@ int namnhuan(int nam)
 	return stt;
 
 }
-*/
+
 void NgaySTT(int stt, int nam)
 {
 	int k=0;
@@ -158,7 +158,7 @@ int main()
 	cin>>n;
 	cout<<endl;
 	CongNgayThang(x,n);
-	cout<<"nhap so ngay muon cong x <= 365 :";
+	cout<<"nhap so ngay muon tru x <= 365 :";
 	cin>>n;
 	cout<<endl;
 	TruNgayThang(x,n);
